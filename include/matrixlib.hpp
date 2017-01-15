@@ -1,12 +1,48 @@
-#ifndef MATRIXLIB_H
-#define MATRIXLIB_H
+#ifndef MATRIXLIB_H_
+#define MATRIXLIB_H_
+
+#include<iostream>
+#include<algorithm>
+#include<vector>
+
 
 namespace matrixlib_braincorps{
 
+    template <class T>
 
+        class MyMatrix {
 
+            std::vector<T> elements_ ; // array of elements
 
+            const unsigned rows_;
+            const unsigned cols_; 
 
+            public:
 
-} // matrixlib_braincorps
+            //constructor
+            MyMatrix (); // default
+            MyMatrix (unsigned int rows, unsigned int cols);
+            MyMatrix (const MyMatrix<T>&);
+
+            //destructor
+            ~MyMatrix();
+
+            //operator overloading
+
+            MyMatrix<T> operator=(const MyMatrix<T>& ) const;
+            MyMatrix<T> operator+(const MyMatrix<T>& ) const;
+            MyMatrix<T> operator*(const MyMatrix<T>& ) const;
+            MyMatrix<T> operator-(const MyMatrix<T>& ) const;
+            MyMatrix<T> operator~() const ;
+            //functions
+
+            MyMatrix<T> transpose() const;
+
+            MyMatrix<T>
+
+        }
+
+} //namespace matrixlib_braincorps
+
+#endif // MATRIXLIB_H_
 
