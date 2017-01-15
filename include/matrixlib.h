@@ -4,9 +4,9 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<stdexcept>
 
-
-namespace matrixlib_braincorps{
+namespace BC_LIB{
 
     template <class T>
 
@@ -21,7 +21,7 @@ namespace matrixlib_braincorps{
 
             //constructor
             MyMatrix (); // default
-            MyMatrix (unsigned int rows, unsigned int cols);
+            MyMatrix (const unsigned int rows, const unsigned int cols, const T* elements=0);
             MyMatrix (const MyMatrix<T>&);
 
             //destructor
