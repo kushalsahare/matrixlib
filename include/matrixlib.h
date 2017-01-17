@@ -6,43 +6,43 @@
 #include<vector>
 #include<stdexcept>
 
-namespace BC_LIB{
+//namespace BC_LIB{
 
-    template <class T>
+template <class T>
 
-        class MyMatrix {
+class MyMatrix {
 
-            std::vector<T> elements_ ; // array of elements
+    std::vector<T> elements_ ; // array of elements
 
-            const unsigned rows_;
-            const unsigned cols_; 
+    const unsigned rows_;
+    const unsigned cols_; 
 
-            public:
+    public:
 
-            //constructor
-            MyMatrix (); // default
-            MyMatrix (const unsigned int rows, const unsigned int cols, const T* elements=0);
-            MyMatrix (const MyMatrix<T>&);
+    //constructor
+    MyMatrix (); // default
+    MyMatrix (const unsigned int rows, const unsigned int cols, const T* elements=0);
+    MyMatrix (const MyMatrix<T>&);
 
-            //destructor
-            ~MyMatrix();
+    //destructor
+    ~MyMatrix();
 
-            //operator overloading
+    //operator overloading
 
-            MyMatrix<T> operator=(const MyMatrix<T>& ) const;
-            MyMatrix<T> operator+(const MyMatrix<T>& ) const;
-            MyMatrix<T> operator*(const MyMatrix<T>& ) const;
-            MyMatrix<T> operator-(const MyMatrix<T>& ) const;
-            MyMatrix<T> operator~() const ;
-            //functions
+    MyMatrix<T> operator=(const MyMatrix<T>& ) const;
+    MyMatrix<T> operator+(const MyMatrix<T>& ) const;
+    MyMatrix<T> operator*(const MyMatrix<T>& ) const;
+    MyMatrix<T> operator-(const MyMatrix<T>& ) const;
+    MyMatrix<T> operator~() const ;
+    //functions
 
-            MyMatrix<T> transpose() const;
+    MyMatrix<T> transpose() const;
 
-            MyMatrix<T>
+    //MyMatrix<T>
 
-        }
+};
 
-} //namespace matrixlib_braincorps
+//} //namespace matrixlib_braincorps
 
 #endif // MATRIXLIB_H_
 

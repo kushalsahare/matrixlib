@@ -1,13 +1,10 @@
-#include "MyMatrixlib.h"
+#include "matrixlib.h"
 
 template<class T>
-BC_LIB::MyMatrix<T>::MyMatrix(){
-
-
-}
+BC_LIB::MyMatrix<T>::MyMatrix(){}
 
 template<class T>
-BC_LIB::MyMatrix<T>::MyMatrix(const unsigned int rows, const unsigned int cols): rows_(rows), cols_(col), elements_(rows*cols, T(0.0)){
+MyMatrix<T>::MyMatrix(const unsigned int rows, const unsigned int cols): rows_(rows), cols_(col), elements_(rows*cols, T(0.0)){
 
     if (rows_==0 || cols_==0){
         throw std::range_error("Attempt to create a degenerate matrix");
@@ -23,11 +20,11 @@ BC_LIB::MyMatrix<T>::MyMatrix(const unsigned int rows, const unsigned int cols):
 }
 
 template<class T>
-BC_LIB::MyMatrix<T>::MyMatrix( const MyMatrix<T>& copy )
-  : rows_(copy.rows_), cols(copy.cols_), elements_(copy.elements_){}
+MyMatrix<T>::MyMatrix( const MyMatrix<T>& copy )
+  : rows_(copy.rows_), cols_(copy.cols_), elements_(copy.elements_){}
 
 template<class T>
-MyMatrix<T>& BC_LIB::MyMatrix<T>::operator=( const MyMatrix<T>& copy )
+MyMatrix<T>& MyMatrix<T>::operator=( const MyMatrix<T>& copy )
 {
    if(copy.rows_ != rows_ && copy.cols_ != cols_ )
       throw std::domain_error("Copying failed!Matrices are not of same dimensions.");
@@ -35,3 +32,16 @@ MyMatrix<T>& BC_LIB::MyMatrix<T>::operator=( const MyMatrix<T>& copy )
       this->elements_[i] = copy.elements_[i];
    return *this;
 }
+
+template<class T>
+MyMatrix<T>& MyMatrix<T>::operator=( const MyMatrix<T>& copy )
+{
+   if(copy.rows_ != rows_ && copy.cols_ != cols_ )
+      throw std::domain_error("Error!Matrices are not of same dimensions.");
+   for(unsigned i=0;i<rows*cols;i++)
+      this->elements_[i] = copy.elements_[i];
+   return *this;
+}
+
+
+
