@@ -6,43 +6,44 @@
 #include<vector>
 #include<stdexcept>
 
-//namespace BC_LIB{
 
 template <class T>
 
 class MyMatrix {
-
-    std::vector<T> elements_ ; // array of elements
-
-    const unsigned rows_;
-    const unsigned cols_; 
-
+    
+    std::vector<std::vector<T> > mat_;
+    unsigned rows_;
+    unsigned cols_;
     public:
 
     //constructor
-    MyMatrix (); // default
-    MyMatrix (const unsigned int rows, const unsigned int cols, const T* elements=0);
-    MyMatrix (const MyMatrix<T>&);
+    
+    MyMatrix(unsigned rows, unsigned cols, const T& initial=0);
+    MyMatrix(const MyMatrix<T>& rhs);
+    virtual ~MyMatrix();
 
-    //destructor
-    ~MyMatrix();
+    // Operator overloading, for "standard" mathematical matrix operations                                                                                                                                                          
+    MyMatrix<T>& operator=(const MyMatrix<T>& rhs);
 
-    //operator overloading
-
-    MyMatrix<T> operator=(const MyMatrix<T>& ) const;
-    MyMatrix<T> operator+(const MyMatrix<T>& ) const;
-    MyMatrix<T> operator*(const MyMatrix<T>& ) const;
-    MyMatrix<T> operator-(const MyMatrix<T>& ) const;
-    MyMatrix<T> operator~() const ;
-    //functions
+    // Matrix mathematical operations                                                                                                                                                                                               
+    MyMatrix<T> operator+(const MyMatrix<T>& rhs);
+    MyMatrix<T>& operator+=(const MyMatrix<T>& rhs);
+    MyMatrix<T> operator-(const MyMatrix<T>& rhs) const;
+    MyMatrix<T>& operator-=(const MyMatrix<T>& rhs);
+    MyMatrix<T> operator*(const MyMatrix<T>& rhs);
+    MyMatrix<T>& operator*=(const MyMatrix<T>& rhs);
+    MyMatrix<T> operator~(const 
 
     MyMatrix<T> transpose() const;
 
-    //MyMatrix<T>
+    // Access the individual elements                                                                                                                                                                                               
+    T& operator()(const unsigned& row, const unsigned& col);
+    const T& operator()(const unsigned& row, const unsigned& col) const;
+
+    // Access the row and column sizes                                                                                                                                                                                              
+    unsigned get_rows() const;
+    unsigned get_cols() const;
 
 };
 
-//} //namespace matrixlib_braincorps
-
 #endif // MATRIXLIB_H_
-
