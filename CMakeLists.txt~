@@ -14,7 +14,7 @@ set(MATRIXLIB_VERSION
 message(STATUS "MATRIXLIB_VERSION == ${MATRIXLIB_VERSION}")
 
 option(MATRIXLIB_BUILD_TESTS "Whether to build tests" OFF)
-option(MATRIXLIB_BUILD_DOCS "Whether to build documentation" ON)
+option(MATRIXLIB_BUILD_DOCS "Whether to build documentation" OFF)
 option(MATRIXLIB_ENABLE_COVERAGE "Instrument tests for coverage" OFF)
 option(MATRIXLIB_WITH_ADDRESS_SANITIZER "Whether to build with address sanitizer enabled" OFF)
 
@@ -30,10 +30,11 @@ endif()
 if(MATRIXLIB_BUILD_DOCS)
   find_package(Doxygen)
   if(DOXYGEN_FOUND)
-  configure_file(${PROJECT_SOURCE_DIR}/doc/doxyfile.in ${PROJECT_SOURCE_DIR}/doc/doxyfile @ONLY)
- add_custom_target(doc
-    ${DOXYGEN_EXECUTABLE} ${PROJECT_SOURCE_DIR}/doc/doxyfile
-    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/doc"
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/doxyfile @ONLY)
+  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/doc")
+  add_custom_target(doc
+    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxyfile
+    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/doc"
     COMMENT "Generating API documentation with Doxygen" VERBATIM
   )
   else()
