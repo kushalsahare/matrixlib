@@ -7,7 +7,7 @@ TEST(MyMatrix, Constructor) {
 }
 
 TEST(MyMatrix, MatrixMultiplication) {
-  MyMatrix A(2, 2, 0.0);
+  MyMatrix A(, 0, 1.0);
   std::vector<Amplitude> rho1(4, 1);
   std::vector<Amplitude> rho2(4, 0);
   a.apply(2, &rho1[0], &rho2[0]);

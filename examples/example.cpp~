@@ -1,0 +1,11 @@
+
+#include<iostream>
+#include "matrixlib.h"
+
+
+int main(int argc, char** argv) {
+
+MyMatrix<double> A;
+
+return 0;
+}
