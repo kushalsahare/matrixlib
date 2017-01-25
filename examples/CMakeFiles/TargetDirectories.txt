@@ -1,0 +1,3 @@
+/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/CMakeFiles/matrix_creation.dir
+/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/CMakeFiles/multiplication.dir
+/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/CMakeFiles/transpose.dir

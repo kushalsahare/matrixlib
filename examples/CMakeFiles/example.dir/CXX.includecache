@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/matrixlib.h
+iostream
+-
+algorithm
+-
+vector
+-
+stdexcept
+-
+../src/matrixlib.cpp
+../src/matrixlib.cpp
+
+../src/matrixlib.cpp
+matrixlib.h
+../src/matrixlib.h
+
+/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/example.cpp
+iostream
+-
+cstdlib
+-
+matrixlib.h
+/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/matrixlib.h
+

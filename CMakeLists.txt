@@ -1,11 +1,8 @@
-cmake_minimum_required(VERSION 2.6.2)
-project(MATRIXLIB)
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
-enable_testing()
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
-include(CheckCXXCompilerFlag)
-include(GenerateExportHeader)
+cmake_minimum_required(VERSION 2.8.9)
+project(Matrixlib)
+set(CMAKE_BUILD_TYPE Release)
+
+
 set(MATRIXLIB_VER_MAJOR 0)
 set(MATRIXLIB_VER_MINOR 0)
 set(MATRIXLIB_VER_PATCH 1)
@@ -13,67 +10,20 @@ set(MATRIXLIB_VERSION
     "${MATRIXLIB_VER_MAJOR}.${MATRIXLIB_VER_MINOR}.${MATRIXLIB_VER_PATCH}")
 message(STATUS "MATRIXLIB_VERSION == ${MATRIXLIB_VERSION}")
 
-option(MATRIXLIB_BUILD_TESTS "Whether to build tests" OFF)
-option(MATRIXLIB_BUILD_DOCS "Whether to build documentation" ON)
-option(MATRIXLIB_ENABLE_COVERAGE "Instrument tests for coverage" OFF)
-option(MATRIXLIB_WITH_ADDRESS_SANITIZER "Whether to build with address sanitizer enabled" OFF)
+set(INCLUDES ${PROJECT_SOURCE_DIR}/include)
+#includes the header
+include_directories(${INCLUDES})
 
-if(MATRIXLIB_WITH_ADDRESS_SANITIZER)
-  set(OLD_CMAKE_REQUIRED_FLAGS ${CMAKE_REQUIRED_FLAGS})
-  set(CMAKE_REQUIRED_FLAGS "-fsanitize=address")
-  CHECK_CXX_COMPILER_FLAG(-fsanitize=address HAVE_ADDRESS_SANITIZER)
-  if(HAVE_ADDRESS_SANITIZER)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address")
-  endif()
-  set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQUIRED_FLAGS})
-endif()
-if(MATRIXLIB_BUILD_DOCS)
-  find_package(Doxygen)
-  if(DOXYGEN_FOUND)
-  configure_file(${PROJECT_SOURCE_DIR}/doc/doxyfile.in ${PROJECT_SOURCE_DIR}/doc/doxyfile @ONLY)
- add_custom_target(doc
-    ${DOXYGEN_EXECUTABLE} ${PROJECT_SOURCE_DIR}/doc/doxyfile
-    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/doc"
-    COMMENT "Generating API documentation with Doxygen" VERBATIM
-  )
-  else()
-    message(STATUS "Doxygen not found -- not building docs")
-  endif()
-endif()
+#However, the file(GLOB...) allows for wildcard additions:
+file(GLOB SOURCES "src/matrixlib.cpp")
 
+#Generate the static library from the sources
+add_library(matrixlib STATIC ${SOURCES})
 
-set(CMAKE_REQUIRED_FLAGS "-fopenmp-simd")
-CHECK_CXX_COMPILER_FLAG(-fopenmp-simd HAVE_PRAGMA_OMP_SIMD)
-if(HAVE_PRAGMA_OMP_SIMD)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -fopenmp-simd")
-endif()
-set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQUIRED_FLAGS})
+#Set the location for library installation. Use "sudo make install" to apply
+install(TARGETS matrixlib DESTINATION /usr/lib)
 
-if(CMAKE_COMPILER_IS_GNUCC OR "${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
-  if(MATRIXLIB_ENABLE_COVERAGE)
-    add_definitions("-ftest-coverage -fprofile-arcs")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ftest-coverage -fprofile-arcs")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ftest-coverage -fprofile-arcs")
-    set(COV_LIBRARIES gcov)
-  endif()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall")
-elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS)
-endif()
+enable_testing()
 
-include_directories(
-    ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_BINARY_DIR}
-    ${PROJECT_BINARY_DIR}/src
-    )
-add_subdirectory(src)
-#add_subdirectory(examples)
-add_subdirectory(include)
-if(MATRIXLIB_BUILD_TESTS)
-  add_subdirectory(gtest-1.7.0)
-  include_directories(${gtest_SOURCE_DIR}/include)
-  add_subdirectory(tests)
-endif()
+add_subdirectory(tests)
 
-configure_file(MatrixLibConfig.h.in MatrixLibConfig.h)

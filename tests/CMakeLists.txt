@@ -1,25 +1,15 @@
-include_directories(${PROJECT_SOURCE_DIR}/include)
+
+find_package(GTest REQUIRED)
 set(TESTS
-    test_
-    test_Decay
-    test_GeneralDecayOperator
-    test_Integrator
-    test_MasterEqn
-    test_MasterEqnEvolution
-    test_Memory
-    test_RK4
-    test_RK45
-    test_SourceSink
-    test_leftApply
-    test_rightApply
-    test_SparseMatrix
-   )
+    test1
+    test2  
+)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+set(PROJECT_TEST_NAME "${PROJECT_NAME_STR}_test")
+include_directories(${GTEST_INCLUDE_DIRS} ${INCLUDES})
+
 foreach(t ${TESTS})
-  add_executable(${t} ${t}.cpp)
-  target_link_libraries(${t} matrixlib_static gtest_main gtest)
-  set_target_properties(${t} PROPERTIES COMPILE_FLAGS -DMATRIXLIB_STATIC_DEFINE)
-  add_test(${t} ${t})
+add_executable(${t} ${t}.cpp)
+target_link_libraries(${t} ${PROJECT_NAME_STR} ${GTEST_BOTH_LIBRARIES} pthread)
+add_test(${t} ${t})
 endforeach()
-

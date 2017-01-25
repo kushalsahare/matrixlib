@@ -1,0 +1,18 @@
+
+#include <gtest/gtest.h>
+#include <matrixlib.h>
+#include <cstdlib>
+
+TEST(MyMatrix, Constructor) {
+    MyMatrix<int> A(2, 2, 1);
+}
+
+TEST(MyMatrix, transpose) {
+
+    }
+
+
+}
+
+
+

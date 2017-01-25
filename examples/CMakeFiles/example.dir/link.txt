@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/example.dir/example.cpp.o  -o example  -L"/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/../build" -rdynamic -Wl,-Bstatic -lmatrixlib -Wl,-Bdynamic -Wl,-rpath,"/home/kushal/Documents/test1/Untitled Folder/studentlib_static/example/../build" 

@@ -1,2 +1,0 @@
-/home/kushal/Documents/matrixlib_braincorps/src/CMakeFiles/matrixlib_braincorps_shared.dir
-/home/kushal/Documents/matrixlib_braincorps/src/CMakeFiles/matrixlib_braincorps_static.dir

@@ -1,0 +1,25 @@
+/**
+
+simple 2x2 tranpose example
+
+*/
+#include<iostream>
+#include<cstdlib>
+
+#include "matrixlib.h"
+
+
+int main(int argc, char** argv) {
+
+MyMatrix<int> A(2,2,0);
+
+std::cout << A;
+
+MyMatrix<int> B = ~A;
+
+
+std::cout << B;
+
+
+return 0;
+}

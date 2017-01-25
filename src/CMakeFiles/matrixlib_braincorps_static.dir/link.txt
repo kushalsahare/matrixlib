@@ -1,2 +1,0 @@
-/usr/bin/ar cr libmatrixlib_braincorps.a  CMakeFiles/matrixlib_braincorps_static.dir/matrixlib.cpp.o
-/usr/bin/ranlib libmatrixlib_braincorps.a

@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/matrix_creation.dir/matrix_creation.cpp.o  -o matrix_creation -rdynamic -Wl,-Bstatic -lmatrixlib -Wl,-Bdynamic 

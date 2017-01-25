@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/transpose.dir/transpose.cpp.o  -o transpose -rdynamic -Wl,-Bstatic -lmatrixlib -Wl,-Bdynamic 
