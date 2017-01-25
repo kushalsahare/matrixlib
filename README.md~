@@ -33,7 +33,7 @@ std::cout << C;
 
 ##compile the program
 
-g++ -I<address to include files> -o myprog myprog.cpp -L<address to linking library (/usr/lib)> -lmatrixlib
+g++ -I "address to include files" -o myprog myprog.cpp -L "address to linking library (/usr/lib)" -lmatrixlib
 
 ## Obtaining matrixlib 
 
@@ -47,7 +47,6 @@ configured, built, and installed with the following commands:
 git clone https://github.com/kushalsahare/matrixlib_braincorps
 cd matrixlib_braincorps
 mkdir build
-mkdir lib
 cd build
 cmake ..
 make -j4
