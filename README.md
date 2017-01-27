@@ -39,7 +39,7 @@ g++ -I "address to include files" -o myprog myprog.cpp -L "address to linking li
 
 The matrix library is distributed in source form.  It can be
 downloaded from the 
-[matrixlibrary github repository](https://github.com/kushalsahare/matrixlib_braincorps).
+[matrixlib github repository](https://github.com/kushalsahare/matrixlib).
 Configuration is via cmake.  On linux the library is downloaded,
 configured, built, and installed with the following commands:
 
