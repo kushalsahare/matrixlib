@@ -44,7 +44,7 @@ Configuration is via cmake.  On linux the library is downloaded,
 configured, built, and installed with the following commands:
 
 ```
-git clone https://github.com/kushalsahare/matrixlib_braincorps
+git clone https://github.com/kushalsahare/matrixlib
 cd matrixlib_braincorps
 mkdir build
 cd build
