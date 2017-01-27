@@ -1,4 +1,4 @@
-# matrixlib_braincorps
+# matrixlib
 This is a simple implementation of a matrix library
 
 
