@@ -45,7 +45,7 @@ configured, built, and installed with the following commands:
 
 ```
 git clone https://github.com/kushalsahare/matrixlib
-cd matrixlib_braincorps
+cd matrixlib
 mkdir build
 cd build
 cmake ..
